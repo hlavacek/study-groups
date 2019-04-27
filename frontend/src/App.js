@@ -8,6 +8,8 @@ function App() {
       <header className="App-header">
         Study Groups
       </header>
+
+      HEllo
     </div>
   );
 }
