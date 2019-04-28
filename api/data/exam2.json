@@ -1,0 +1,31 @@
+
+{
+  "id": {
+    "S": "2"
+  },
+  "title": {
+    "S": "Software Engineering"
+  },
+  "shortcut": {
+    "S": "SI"
+  },
+  "datetime": {
+    "S": "12.3.2019, 12:00"
+  },
+  "studyGroups": {
+    "M": {
+      "id": {
+        "S": "1"
+      },
+      "location": {
+        "S": "3D Lab"
+      },
+      "datetime": {
+        "S": "13.2.2019, 11:00"
+      },
+      "students": {
+        "L": []
+      }
+    }
+  }
+}
