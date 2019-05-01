@@ -28,7 +28,9 @@ before(async () => {
   } catch (err) {
     // console.debug('table already exists');
   }
+});
 
+beforeEach(async () => {
   await documentClient.put({
     TableName: config.dynamoTable,
     Item: exams[0],

@@ -33,18 +33,21 @@ functions:
       - http:
           path: api/exams
           method: get
+          cors: true
   addStudyGroup:
     handler: src/handler.addStudyGroup
     events:
       - http:
           path: api/exams/{examId}/studyGroups
           method: put
+          cors: true
   addStudyGroupStudent:
     handler: src/handler.addStudyGroupStudent
     events:
       - http:
           path: api/exams/{examId}/studyGroups/{studyGroupId}/students
           method: put
+          cors: true
 resources:
   Resources:
     DynamoDbTable:

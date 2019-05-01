@@ -20,6 +20,7 @@ describe("addStudent", () => {
     const response = await addStudyGroupStudent(event);
 
     expect(response.statusCode).to.equal(expectedStatus);
+    return response;
   }
 
   it("should add student into a study groups to existing students", async () => {
@@ -34,6 +35,12 @@ describe("addStudent", () => {
 
     const exam = await getExam(1);
     expect(exam.studyGroups[1].students).to.contain(student.name);
+  });
+
+  it('should return cors headers', async() => {
+    const response = await callAddStudent(1, 2, student);;
+    expect(response.headers['Access-Control-Allow-Origin']).to.equal('*');
+    expect(response.headers['Access-Control-Allow-Credentials']).to.equal(true);
   });
 
 });

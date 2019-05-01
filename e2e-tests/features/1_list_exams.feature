@@ -4,6 +4,7 @@ Feature: List Exams
   I should see list of exams
 
   Scenario: Show base page of our application
+    Given the application is running
     When I go to "/"
     Then I will see header "Study Groups"
 

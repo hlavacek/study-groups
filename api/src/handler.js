@@ -3,17 +3,24 @@ const httpStatus = require('http-status');
 const { documentClient, getExam, putExam } = require('./db');
 const config = require('./config');
 
+const addCorsHeaders = (response) => {
+  response.headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true,
+  };
+  return response;
+}
+
 module.exports.getExams = async (event) => {
   const dbResponse = await documentClient.scan({ TableName: config.dynamoTable }).promise();
-  
-  return {
+
+  return addCorsHeaders({
     statusCode: httpStatus.OK,
     body: JSON.stringify(dbResponse.Items),
-  };
+  });
 };
 
 module.exports.addStudyGroup = async (event) => {
-
   const studyGroup = JSON.parse(event.body);
   const { examId } = event.pathParameters;
 
@@ -23,13 +30,13 @@ module.exports.addStudyGroup = async (event) => {
   }
   existingExam.studyGroups.push(studyGroup);
   studyGroup.id = String(existingExam.studyGroups.length);
-  
+
   await putExam(existingExam);
-  
-  return {
+
+  return addCorsHeaders({
     statusCode: httpStatus.OK,
     body: "",
-  };
+  });
 };
 
 module.exports.addStudyGroupStudent = async (event) => {
@@ -46,8 +53,8 @@ module.exports.addStudyGroupStudent = async (event) => {
 
   await putExam(existingExam);
 
-  return {
+  return addCorsHeaders({
     statusCode: httpStatus.OK,
     body: "",
-  };
+  });
 }

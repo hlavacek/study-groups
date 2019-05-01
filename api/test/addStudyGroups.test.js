@@ -19,6 +19,7 @@ describe("addStudyGroups", () => {
     const response = await addStudyGroup(event);
 
     expect(response.statusCode).to.equal(expectedStatus);
+    return response;
   }
 
   it("should add study groups into the list of existing study groups", async () => {
@@ -41,5 +42,11 @@ describe("addStudyGroups", () => {
     expect(exam.studyGroups[0].location).to.equal(studyGroup.location)
     expect(exam.studyGroups[0].datetime).to.equal(studyGroup.datetime)
     expect(exam.studyGroups[0].id).to.equal('1');
+  });
+
+  it('should return cors headers', async() => {
+    const response = await callAddStudyGroup(2, studyGroup);
+    expect(response.headers['Access-Control-Allow-Origin']).to.equal('*');
+    expect(response.headers['Access-Control-Allow-Credentials']).to.equal(true);
   });
 });

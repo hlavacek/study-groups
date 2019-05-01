@@ -1,27 +1,19 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import App from './App';
+import { exams } from './testData';
+import 'react-testing-library/cleanup-after-each'
+import {render, waitForElement} from 'react-testing-library'
 
 
-it('Shows the exams', () => {
-  const app = mount(<App />);
-  const header = app.find('Exam');
-  expect(header).to.have.length(2);
+beforeEach(() => {
+  fetch.resetMocks()
+})
+
+it('Shows the exams', async () => {
+  fetch.mockResponseOnce(JSON.stringify(exams));
+
+  const {getAllByTestId} = render(<App />);  
+
+  const examComponents = await waitForElement(() => getAllByTestId(/exam-root-.*/));
+  expect(examComponents).to.have.length(2);
 });
-
-
-// it('Shows the header row with titles', () => {
-//   const app = shallow(<App />);
-//   const tableHeaders = app.find('th');
-//   expect(tableHeaders).to.have.length(3);
-//   expect(tableHeaders.map(header => header.text()))
-//     .to.eql(['Course', 'Date', 'Time']);
-// });
-
-// it('Shows the header row with titles', () => {
-//   const app = shallow(<App />);
-//   const tableHeaders = app.find('th');
-//   expect(tableHeaders).to.have.length(3);
-//   expect(tableHeaders.map(header => header.text()))
-//     .to.eql(['Course', 'Date', 'Time']);
-// });

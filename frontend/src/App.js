@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
-import { exams } from './testData';
+import { API_BASE_PATH } from './config';
 
 import Exam from './components/Exam';
 
@@ -30,7 +30,20 @@ const styles = theme => ({
 
 });
 
+
 function App({ classes }) {
+  const [exams, setExams] = useState([]);
+
+  const loadExams = async () => {
+    const response = await fetch(`${API_BASE_PATH}/api/exams`);
+    const exams = await response.json();
+    setExams(exams);
+  }
+
+  useEffect(() => {
+    loadExams();
+  }, []);
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appbar}>
@@ -45,7 +58,7 @@ function App({ classes }) {
         <Grid container spacing={24}>
           {exams.map(exam =>
             <Grid item xs={12} sm={12} md={6} key={exam.title}>
-              <Exam exam={exam} />
+              <Exam exam={exam} loadExams={loadExams}/>
             </Grid>)}
         </Grid>
       </div>

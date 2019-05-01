@@ -12,26 +12,30 @@
     "S": "12.3.2019, 12:00"
   },
   "studyGroups": {
-    "M": {
-      "id": {
-        "S": "1"
-      },
-      "location": {
-        "S": "3D Lab"
-      },
-      "datetime": {
-        "S": "13.2.2019, 11:00"
-      },
-      "students": {
-        "L": [
-          {
-            "S": "student1"
+    "L": [
+      {
+        "M": {
+          "id": {
+            "S": "1"
           },
-          {
-            "S": "student2"
+          "location": {
+            "S": "3D Lab"
+          },
+          "datetime": {
+            "S": "13.2.2019, 11:00"
+          },
+          "students": {
+            "L": [
+              {
+                "S": "student1"
+              },
+              {
+                "S": "student2"
+              }
+            ]
           }
-        ]
+        }
       }
-    }
+    ]
   }
 }
