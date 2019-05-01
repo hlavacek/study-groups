@@ -15,7 +15,7 @@ module.exports = {
   getExam: async (examId) => {
     const params = {
       TableName: config.dynamoTable,
-      Key: { "id": String(examId) }
+      Key: { id: String(examId) }
     };
     const result = await documentClient.get(params).promise();
     return result.Item;
@@ -25,8 +25,8 @@ module.exports = {
     const putParams = {
       TableName: config.dynamoTable,
       Item: exam,
-    }
-  
+    };
+
     await documentClient.put(putParams).promise();
   }
 };

@@ -1,4 +1,3 @@
-'use strict';
 const httpStatus = require('http-status');
 const { documentClient, getExam, putExam } = require('./db');
 const config = require('./config');
@@ -9,9 +8,9 @@ const addCorsHeaders = (response) => {
     'Access-Control-Allow-Credentials': true,
   };
   return response;
-}
+};
 
-module.exports.getExams = async (event) => {
+module.exports.getExams = async () => {
   const dbResponse = await documentClient.scan({ TableName: config.dynamoTable }).promise();
 
   return addCorsHeaders({
@@ -35,7 +34,7 @@ module.exports.addStudyGroup = async (event) => {
 
   return addCorsHeaders({
     statusCode: httpStatus.OK,
-    body: "",
+    body: '',
   });
 };
 
@@ -44,7 +43,8 @@ module.exports.addStudyGroupStudent = async (event) => {
   const { examId, studyGroupId } = event.pathParameters;
 
   const existingExam = await getExam(examId);
-  const studyGroup = existingExam.studyGroups.find((studyGroup) => studyGroup.id === String(studyGroupId));
+  const studyGroup = existingExam.studyGroups
+    .find(sg => sg.id === String(studyGroupId));
 
   if (!studyGroup.students) {
     studyGroup.students = [];
@@ -55,6 +55,6 @@ module.exports.addStudyGroupStudent = async (event) => {
 
   return addCorsHeaders({
     statusCode: httpStatus.OK,
-    body: "",
+    body: '',
   });
-}
+};

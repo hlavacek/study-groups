@@ -17,6 +17,13 @@ BeforeAll(async () => { // eslint-disable-line new-cap
   browser.ignoreSynchronization = true;
 });
 
+BeforeAll(async () => { // eslint-disable-line new-cap
+  console.log(`Test configuration: ${JSON.stringify(config)}`); // eslint-disable-line no-console
+  // disable angular support
+  browser.ignoreSynchronization = true;
+});
+
+
 After(async function after() {
   const world = this;
 

@@ -18,4 +18,4 @@ module.exports = [{
   title: 'Software Engineering',
   shortcut: 'SI',
   datetime: '13.3.2019, 12:00'
-}]
+}];

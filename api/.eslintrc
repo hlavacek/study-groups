@@ -38,20 +38,16 @@
     ]
   },
   "env": {
-    "node": true,
-    "mocha": true
+    "node": true
   },
   "globals": {
     "browser": true,
-    "$": true,
-    "$$": true,
-    "element": true,
-    "by": true,
-    "ExpectedConditions": true,
-    "protractor": true,
-    "When": true,
-    "Given": true,
-    "Then": true
+    "before": true,
+    "beforeEach": true,
+    "describe": true,
+    "after": true,
+    "afterEach": true,
+    "it": true
   },
   "parserOptions": {
     "ecmaVersion": 2017,

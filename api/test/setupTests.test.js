@@ -7,14 +7,14 @@ before(async () => {
   const params = {
     AttributeDefinitions: [
       {
-        AttributeName: "id",
-        AttributeType: "S"
+        AttributeName: 'id',
+        AttributeType: 'S'
       }
     ],
     KeySchema: [
       {
-        AttributeName: "id",
-        KeyType: "HASH"
+        AttributeName: 'id',
+        KeyType: 'HASH'
       }
     ],
     ProvisionedThroughput: {
