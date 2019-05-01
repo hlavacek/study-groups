@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const config = require('./config');
+const exams = require('./testData');
 
 const dynamoOptions = {};
 
@@ -12,4 +13,8 @@ exports.putExam = async (exam) => {
   };
 
   await documentClient.put(putParams).promise();
+};
+
+exports.resetDatabase = async () => {
+  await Promise.all(exams.map(exam => exports.putExam(exam)));
 };

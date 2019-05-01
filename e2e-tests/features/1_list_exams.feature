@@ -4,13 +4,12 @@ Feature: List Exams
   I should see list of exams
 
   Scenario: Show base page of our application
-    Given the application is running
     When I go to "/"
     Then I will see header "Study Groups"
 
   Scenario: Show the list of exams
     When I go to "/"
-    Then I will see list "Exams"
-      | Course                  | Date         | Time           |
-      | Sotware engineering     | 12.5.2019    | 13:00          |
-      | Artificial intelligence | 9.5.2019     | 13:00          |
+    Then I will see exams
+      | title                   | subheader         |
+      | Software Engineering    | 13.3.2019, 12:00  |
+      | Artificial Intelligence | 12.3.2019, 12:00  |
